@@ -8,7 +8,9 @@ const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const authorRouter = require('./controllers/authors')
 const resetRouter = require('./controllers/reset')
-const { errorHandler } = require('./util/error')
+const readinglistsRouter = require('./controllers/readinglists')
+const logoutRouter = require('./controllers/logout')
+const { errorHandler } = require('./middleware/error')
 
 app.use(express.json())
 app.get('/', (req, res) => {
@@ -18,6 +20,8 @@ app.use('/api/blogs', blogsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/authors', authorRouter)
+app.use('/api/readinglists', readinglistsRouter)
+app.use('/api/logout', logoutRouter)
 
 if (process.env.TESTING === 'true') {
   app.use('/api/reset', resetRouter)
